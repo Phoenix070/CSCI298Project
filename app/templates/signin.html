@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="container" style="text-align: center">
+    <div class="col-md-4 col-md-offset-4">
+      <form class="form-signin">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <label for="inputUser" class="sr-only">Username</label>
+        <input type="text" id="inputUser" class="form-control" placeholder="Username" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      </form>
+
+    </div>
+    </div>
+
+
+    <footer class="footer" style="clear:both; position: fixed; bottom: 10px; width: 100%">
+        <div class="container" align="middle" >
+            <hr>
+            <p style="text-align: center">
+			    &nbsp;© Copyright 2015 Pooja Pawara.
+			    <br />
+			    Software Version: 1.0
+		    </p>
+		</div>
+        </footer>
+
+{% endblock %}

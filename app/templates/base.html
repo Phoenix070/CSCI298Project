@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>MongoDB Learning Tool</title>
+		<link rel="stylesheet" href="/static/bootstrap-3.3.4/css/bootstrap.css" />
+        <link rel="stylesheet" href="/dashboard.css" />
+
+	</head>
+
+	<body>
+
+     <nav class="navbar navbar-inverse" style="height: 100px">
+      <div class="container-fluid" style="margin-top: 20px">
+        <div class="navbar-header" >
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/home"><img src="/static/logo.jpg" alt style="width: 40px; height: 30px;" /></a>
+          <a class="navbar-brand" href="/home" style="font-size: 35px">MongoDB Learning Tool</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right" style="font-size: large;">
+            <li><a href="/home">Home</a></li>
+            <li><a href="/help">Help/Features</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+        <div class="container-fluid">
+        <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li class="active"><a href="/databases">Databases <span class="sr-only">(current)</span></a></li>
+            <li><a href="/collections">Collections</a></li>
+            <li><a href="/tutorial">Tutorial</a></li>
+            <li><a href="/sql_to_mongodb">SQL to MongoDB Conversion</a></li>
+          </ul>
+        </div>
+
+        <div id="content">{% block content %}{% endblock %}</div>
+        </div>
+        </div>
+
+        <br><br><br><br><br>
+        <footer class="footer" style="clear:both; position: relative; bottom: 10px; width: 100%">
+        <div class="container" align="middle" >
+            <hr>
+            <p style="text-align: center">
+			    &nbsp;© Copyright 2015 Pooja Pawara.
+			    <br />
+			    Software Version: 1.0
+		    </p>
+		</div>
+        </footer>
+
+	</body>
+</html>
+

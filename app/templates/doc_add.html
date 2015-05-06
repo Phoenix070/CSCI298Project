@@ -1,0 +1,61 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2 class="sub-header">Collection Name : {{ name }}</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th><label style="width: 150px">Attribute Name</label></th>
+                <th><label>Value</label></th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for i in content %}
+                    {% for key, value in i.items() %}
+                    <tr>
+                        <td>{{ key }}</td>
+                        <td>{{ value }}</td>
+                    </tr>
+                    {% endfor %}
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <br>
+
+        <form>
+        Attribute :<input type="text" id="Attr">&nbsp;
+        Value :<input type="text" id="Value">&nbsp;
+        <a class="btn btn-default"  href="javascript:add()"
+            role="button" style="background-color: #9acfea;">+Add</a>
+            <script>
+                add = function(){
+                    var name = document.getElementById('Attr').value;
+                    var value = document.getElementById('Value').value;
+                    if (name && value){
+                        var option = document.getElementById('option_box');
+                        var option_selected = option.options[option.selectedIndex].value;
+                        location.href = "/collections/{{ name }}/add_document/{{ objectid }}/"+name+"/"+value+"/"+option_selected;
+                        }
+                    else{
+                        alert("Attribute Name OR Value missing!");
+                    }
+                    }
+            </script>
+
+        &nbsp;&nbsp;
+        <select id="option_box" style="width: 150px; height: 50px; line-height: 50px; font-size: large">
+            <option value="single_value">Single Value</option>
+            <option value="list_value">List</option>
+        </select>
+
+      </form>
+
+      <br><br><br>
+      <a class="btn btn-default" href="/collections/{{ name }}"
+            role="button" style="background-color: #9acfea;">Done</a>
+    </div>
+
+{% endblock %}

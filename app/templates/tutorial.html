@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2 class="sub-header">Tutorials List</h2>
+    <hr style="margin-right: 100px;">
+    <div class="tutorial_list">
+        <ul style="margin-left: 300px; font-size: medium">
+            <li><a href="/tutorial/overview">MongoDB Overview</a>
+                <br>Basic Overview of MongoDB, its data representation and a tutorial to help start with mongo shell.</li><br>
+            <li><a href="/tutorial/insert_doc">Inserting Documents</a>
+                <br>Tutorial on insert operation in mongoDB and its usages.</li><br>
+            <li><a href="/tutorial/update_doc">Updating Documents</a>
+                <br>Tutorial on update operation in mongoDB and its usages. Includes sub-function usage chart.</li><br>
+            <li><a href="/tutorial/delete_doc">Deleting Documents</a>
+                <br>Tutorial on delete operation in mongoDB and its usages.</li><br>
+            <li><a href="/tutorial/search_doc">Search Queries</a>
+                <br>Tutorial on search operation in mongoDB and its usages. Includes sub-function usage chart.</li><br>
+        </ul>
+    </div>
+    <br><br><br><br><br>
+{% endblock %}
