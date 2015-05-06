@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2 class="sub-header">MongoDB Overview</h2>
+    <hr style="margin-right: 100px;">
+    <div class="table-responsive" style="margin-right: 100px;">
+        <p>MongoDB derived from "humongous" is a document-oriented, NoSQL database.
+        It is a non-relational database with JSON-like documents and dynamic schemas.
+        <br>Internally it is stored in BSON(Binary JSON) format.
+        It is an open-source software with highly varied applications,
+        highly scalable and faster than traditional databases in many aspects.
+        <br><br>
+        MongoDB stores data in the form of documents, which are JSON-like field and value pairs.
+        <br>An example of a document with field-value pairs:<br><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            id : "az2345",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            name : "John Doe",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            gender : "Male",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            age : 35,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            phone : ["232.1234", "232.1235"]<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        }
+        <br><br>
+        A Collection in MongoDB stores all documents that are related and share a set of common attributes.
+        Collections are just like tables expect they store non-relational data.
+        <br><br>
+        <b>Collection :</b>
+        <br>
+        <b>{</b> <br>&nbsp;&nbsp;
+            <b>id</b> : "az2345",<br>&nbsp;&nbsp;
+            <b>name</b> : "John Doe",<br>&nbsp;&nbsp;
+            <b>gender</b> : "Male",<br>&nbsp;&nbsp;
+            <b>age</b> : 35,<br>&nbsp;&nbsp;
+            <b>phone</b> : ["232.1234", "232.1235"]<br>
+        <b>}</b> <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <b>{</b> <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <b>id</b> : "ab2347",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <b>name</b> : "Jane Doe",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <b>gender</b> : "Female",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <b>age</b> : 34,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <b>phone</b> : ["231.1256", "231.1257"]<br>&nbsp;&nbsp;&nbsp;&nbsp;
+        <b>}</b> <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <b>{</b> ..
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.. <b>}</b> <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <b>{</b> ..
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.. <b>}</b> <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <b>{</b> ..
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.. <b>}</b>
+
+        <br><br><br>
+        <b><u>Using Mongo shell for operating the database :</u></b>
+        <br><br>
+        >> Open a terminal and type <b>"mongo"</b> to start the mongo shell. By default you get connected to database <b>"test"</b>.<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OR<br>
+        >> Type <b>"mongo database_name"</b> to start mongo shell and connect to the database name provided.
+        <br><br>Use the following commands to start interacting with the database.
+        </p>
+
+        <table class="table table-striped" style="width: 80%">
+        <thead>
+            <tr>
+                <th><label style="width: 400px;">Command</label></th>
+                <th><label>Description</label></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td> > <b>use</b> database_name
+                    <br>Ex: > <b>use</b> project</td>
+                <td>This will connect to the database name provided if already exists.
+                    <br>If it doesn't exist, then database will be created and connected.
+                    <br>This command can also be used to switch from current database to the database name provided.</td>
+            </tr>
+            <tr>
+                <td> > <b>db</b></td>
+                <td>Check the currently selected database.</td>
+            </tr>
+            <tr>
+                <td> > <b>show dbs</b></td>
+                <td>Lists all the databases in the system.</td>
+            </tr>
+            <tr>
+                <td> > <b>show collections</b></td>
+                <td>Lists all the collections in the current database selected.</td>
+            </tr>
+            <tr>
+                <td> > <b>db.createCollection(name)</b>
+                    <br>Ex: db.createCollection("blog")</td>
+                <td>To create a collection use this command. In this command, name is the collection name to be created.</td>
+            </tr>
+            <tr>
+                <td> > <b>db.collection_name.command()</b>
+                    <br>Ex: db.project.find() OR db.project.insert({id: 1})</td>
+                <td>To use any CRUD operations on the collection, give the collection_name and the command to execute.
+                    <br>Commands can be insertion, deletion, modification or search operations.</td>
+            </tr>
+            <tr>
+                <td> > <b>db.dropDatabase()</b></td>
+                <td>To drop the selected database use this command. If no database currently selected, it will drop the "test" database.</td>
+            </tr>
+            <tr>
+                <td> > <b>db.collection_name.drop()</b>
+                    <br>Ex: db.blog.drop()</td>
+                <td>To drop a collection use this command.</td>
+            </tr>
+        </tbody>
+        </table>
+        <hr>
+        <form>
+            <br><br>
+            <a class="btn btn-default" href="/tutorial"
+            role="button" style="background-color: #9acfea;">< Back to Tutorials</a>
+
+            <a class="btn btn-default"  href="/tutorial/insert_doc"
+            role="button" style="background-color: #9acfea; margin-left: 500px">Inserting Documents ></a>
+        </form>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2 class="sub-header">Deleting Documents</h2>
+    <hr style="margin-right: 100px;">
+    <div class="table-responsive" style="margin-right: 100px;">
+        <p>
+        <br>
+        The command for deleting documents in MongoDB is:
+        <b>db.collection.remove()</b>
+        <br>This command deletes the document in the collection.
+        <br><br><br><b>Delete operation can be carried out as follows : </b>
+        <br><br>
+        <b> > db.collection_name.remove( { } )</b>
+        <br><br>In this command, collection_name is the name of the collection delete operation is performed on.
+        <br>With this command all documents in the collection will be deleted.
+        <br><br>
+        <u>Example :</u> <br>
+        <b> > db.users.remove(<br>&nbsp;&nbsp;&nbsp;{ name: "Sherlock" }<br>)
+        </b>
+        <br>The document is searched in the collection where name="Sherlock" and the retrieved document is deleted from the collection.
+
+        <br><br>If multiple documents have to be deleted, then use <b>multi=true</b> as one of the arguments to the function.
+        <br><u>Example :</u>
+        <br><br>
+        <b> > db.users.remove(<br>&nbsp;&nbsp;&nbsp;{ status: "A" },
+                            <br>&nbsp;&nbsp;&nbsp;{ multi: true } <br>)
+        </b>
+        <br>This will find all the documents that satisfy the requirement and delete those documents.
+
+        <hr>
+
+        <form>
+            <br><br>
+            <a class="btn btn-default" href="/tutorial/update_doc"
+            role="button" style="background-color: #9acfea;">< Updating Documents</a>
+
+            <a class="btn btn-default"  href="/tutorial/search_doc"
+            role="button" style="background-color: #9acfea; margin-left: 500px">Search Queries ></a>
+        </form>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2 class="sub-header">SQL to MongoDB Conversion</h2>
+    <hr>
+    <div class="table-responsive">
+        <table class="table table-striped" style="width: 80%">
+        <thead>
+        <tr>
+            <th><label style="width: 500px">SQL Concepts</label></th>
+            <th><label>MongoDB Concepts</label></th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr><td style="width: 500px;">database</td><td>database</td></tr>
+            <tr><td style="width: 500px;">table</td><td>collection</td></tr>
+            <tr><td style="width: 500px;">row</td><td>document</td></tr>
+            <tr><td style="width: 500px;">column</td><td>field or attribute</td></tr>
+            <tr><td style="width: 500px;">index</td><td>index</td></tr>
+            <tr><td style="width: 500px;">primary key</td><td>primary key</td></tr>
+        </tbody>
+        </table>
+
+        <br><br><br>
+        <h3>SQL to MongoDB conversion statements</h3>
+        <p>The following table gives a basic overview of SQL to MongoDB query translations.
+            This table is provided to help understand the conversion process.
+        </p>
+
+        <table class="table table-striped"style="width: 80%">
+        <thead>
+        <tr>
+            <th><label style="width: 500px">SQL Statements</label></th>
+            <th><label>MongoDB Statements</label></th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="width: 500px;">Create table users(
+                    <br>&nbsp;&nbsp;&nbsp;id varchar(30),<br>&nbsp;&nbsp;&nbsp;name varchar(30),
+                    <br>&nbsp;&nbsp;&nbsp;PRIMARY KEY(id)<br>)</td>
+                <td>db.createCollection("users")<br>This will create a collection "users" with no columns.
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OR<br>db.users.insert( {<br>&nbsp;&nbsp;&nbsp;id:"az2345",
+                    <br>&nbsp;&nbsp;&nbsp;name: "Pooja Pawara"<br>} )
+                    <br>This will automatically create a collection "users" and insert one document.</td>
+            </tr>
+
+            <tr>
+                <td style="width: 500px;">Drop table users</td>
+                <td>db.users.drop()</td>
+            </tr>
+
+            <tr>
+                <td style="width: 500px;">Insert into users (id, name, gender)
+                    <br>values("ab1234","John Doe", "Male")</td>
+                <td>db.users.insert(<br> &nbsp;&nbsp;&nbsp;{id: "ab1234",
+                    name: "John Doe", gender: "Male"} <br>)</td>
+            </tr>
+
+            <tr>
+                <td style="width: 500px;">Select * from users</td>
+                <td>db.users.find()<br>&nbsp;&nbsp;&nbsp;OR<br>db.users.find( {} )</td>
+            </tr>
+
+            <tr>
+                <td style="width: 500px;">Select id, name from users</td>
+                <td>db.users.find( { },<br>&nbsp;&nbsp;&nbsp;{id:1, name:1},<br> )</td>
+            </tr>
+
+            <tr>
+                <td style="width: 500px;">Select * from users
+                    <br>where age = 33</td>
+                <td>db.users.find( <br>&nbsp;&nbsp;&nbsp;{age: "33"}<br> )</td>
+            </tr>
+
+            <tr>
+                <td style="width: 500px;">Select * from users
+                    <br>where name LIKE "%Doe%"</td>
+                <td>db.users.find( <br>&nbsp;&nbsp;&nbsp;{name: /Doe/}<br> )</td>
+            </tr>
+
+            <tr>
+                <td style="width: 500px;">Select * users
+                    <br>where age > 33 AND age <= 40</td>
+                <td>db.users.find( <br>&nbsp;&nbsp;&nbsp;{age: {$gt: 33, $lte: 40}}<br> )</td>
+            </tr>
+
+            <tr>
+                <td style="width: 500px;">Select * users
+                    <br>order by name desc</td>
+                <td>db.users.find().sort( {name: -1} )
+                <br>This sorts the documents by name, -1: descending, 1: ascending</td>
+            </tr>
+
+            <tr>
+                <td style="width: 500px;">Select count(*) from users</td>
+                <td>db.users.count() <br>&nbsp;&nbsp;&nbsp;OR <br>db.users.find().count()</td>
+            </tr>
+
+            <tr>
+                <td style="width: 500px;">Select * from users <br>limit 1</td>
+                <td>db.users.findOne() <br>&nbsp;&nbsp;&nbsp;OR <br>db.users.find().limit(1)</td>
+            </tr>
+
+            <tr>
+                <td style="width: 500px;">Select * from users <br>skip 10</td>
+                <td>db.users.find().skip(10)</td>
+            </tr>
+
+            <tr>
+                <td style="width: 500px;">Select Distinct(name) from users</td>
+                <td>db.users.distinct("name")</td>
+            </tr>
+
+            <tr>
+                <td style="width: 500px;">Update users<br>Set status = "A"<br> where age > 35</td>
+                <td>db.users.update(<br>&nbsp;&nbsp;&nbsp;{age: { $gt: 35 }},
+                    <br>&nbsp;&nbsp;&nbsp;{$set: {status: "A"}},
+                    <br>&nbsp;&nbsp;&nbsp;{multi: true}<br>)</td>
+            </tr>
+
+            <tr>
+                <td style="width: 500px;">Update users<br>Set salary = salary + 1000<br> where status = "A"</td>
+                <td>db.users.update(<br>&nbsp;&nbsp;&nbsp;{status: "A" },
+                    <br>&nbsp;&nbsp;&nbsp;{$inc: {salary: 1000}},
+                    <br>&nbsp;&nbsp;&nbsp;{multi: true}<br>)</td>
+            </tr>
+
+            <tr>
+                <td style="width: 500px;">Delete from users</td>
+                <td>db.users.remove( {} )</td>
+            </tr>
+
+            <tr>
+                <td style="width: 500px;">Delete from users<br>where status = "D"</td>
+                <td>db.users.remove( { status: "D" } )</td>
+            </tr>
+        </tbody>
+        </table>
+    </div>
+
+
+
+{% endblock %}

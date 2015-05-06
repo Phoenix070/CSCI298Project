@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2 class="sub-header">Database List</h2>
+    <hr>
+      <div class="table-responsive">
+        <table class="table table-striped">
+        <thead>
+            <tr>
+                <th><label style="width: 500px">Name</label>
+                <label>Action</label></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for i in databases %}
+            <tr>
+                <td>
+                    <label style="width: 500px"><a href="/database/{{ i }}" id="name">{{ i }}</a></label>
+                    <button id="{{ i }}" type="submit" onclick="delete_database(this.id)">
+                        <span class="glyphicon glyphicon-trash">Drop
+                        </span>
+                    </button>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+
+        <form>
+            <br>
+            Database Name:<input type="text" id="DBname">
+            <a class="btn btn-default" href="javascript:add()"
+            role="button" style="background-color: #9acfea;">+Add</a>
+            <script>
+                add = function(){
+                    var dbname = document.getElementById('DBname').value;
+                    location.href = "/database/add/"+dbname;}
+            </script>
+        </form>
+      </div>
+
+<script>
+    function delete_database(database){
+        var x = confirm("Do you want to delete?")
+        if( x == true ){
+            var url = "/database/drop/"+database;
+            location.assign(url);
+        }
+    }
+
+</script>
+{% endblock %}
