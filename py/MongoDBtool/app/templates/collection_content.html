@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h2 class="sub-header">Collection : {{ name }}</h2>
+      <div class="table-responsive" style="margin-right: 10px; overflow: auto;">
+        <table id="collection" class="table table-striped" style="width: 100%;" cellpadding="2">
+        <caption><b>Collection Content</b></caption>
+        <thead>
+            <tr>
+                <th>JSON Mode</th>
+                {% for i in keys %}
+                    <th>{{ i }}</th>
+                {% endfor %}
+                <th>Document Level Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for each_row in list_new %}
+                <tr>
+                <td><button id="{{ each_row[1] }}" name="'{{ each_row }}'" type="submit" onclick="json_mode(this.id)">
+                        <span class="glyphicon glyphicon-file" style="color: #23527c;"></span>
+                        <script type="text/javascript">
+                            json_mode = function( id ){
+                                alert(id);
+                                }
+                        </script>
+                    </button>
+                </td>
+
+                {% for key, value in each_row[0].items() %}
+                    <td style="max-width:100%; white-space:nowrap;"> {{ value }} </td>
+                {% endfor %}
+
+                <td style="max-width:100%; white-space:nowrap;">
+                <button id="{{ each_row[0]['_id'] }}" type="submit" onclick="edit_record(this.id)">
+                    <span class="glyphicon glyphicon-pencil" style="color: #23527c;">Add/Edit Attribute</span>
+                    <script>
+                        edit_record = function(id){
+                            var cname = "{{ name }}";
+                            var name=prompt("Enter attribute name");
+                            var value= prompt("Enter attribute value");
+                            if (name && value){
+                                location.href = "/collections/edit_doc/"+cname+"/"+id+"/"+name+"/"+value;
+                            }
+                        }
+                    </script>
+                </button>
+                <button id="{{ each_row[0]['_id'] }}" type="submit" onclick="delete_attr(this.id)">
+                        <span class="glyphicon glyphicon-trash" style="color: #23527c;">Delete Attribute</span>
+                        <script>
+                        delete_attr = function(id){
+                            var name=prompt("Enter attribute name");
+                            if( name ){
+                                var cname = "{{ name }}";
+                                location.href = "/collections/delete_attr/"+cname+"/"+id+"/"+name;}
+                            }
+                    </script>
+                </button>
+                <button id="{{ each_row[0]['_id'] }}" type="submit" onclick="delete_record(this.id)">
+                        <span class="glyphicon glyphicon-trash" style="color: #23527c;">Delete Document</span>
+                        <script>
+                        delete_record = function(id){
+                            var x = confirm("Do you want to delete?")
+                            if( x == true ){
+                                var cname = "{{ name }}";
+                                location.href = "/collections/delete_doc/"+cname+"/"+id;}
+                            }
+                    </script>
+                </button>
+                </td>
+                </tr>
+
+            {% endfor %}
+
+        </tbody>
+        </table>
+
+        <form>
+        <p><br><br><b>Collection level operations : </b><br><br></p>
+        <p><a class="btn btn-default" href="/collections/{{ name }}/document/False/None"
+            role="button" style="background-color: #9acfea;">+Add Document</a>
+
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <a class="btn btn-default" href="javascript:add_attr()"
+            role="button" style="background-color: #9acfea;">+Add Attribute To Collection</a>
+            <script>
+                add_attr = function(){
+                            var name=prompt("Enter attribute name to add");
+                            if( name ){
+                                var cname = "{{ name }}";
+                                location.href = "/collections/add_attr_to_collection/"+cname+"/"+name;}
+                            }
+            </script>
+
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <a class="btn btn-default" href="javascript:delete_attr_from_col()"
+            role="button" style="background-color: #9acfea;">-Delete Attribute From Collection</a></p>
+            <script>
+                delete_attr_from_col = function(){
+                            var name=prompt("Enter attribute name to delete");
+                            if( name ){
+                                var cname = "{{ name }}";
+                                location.href = "/collections/delete_attr_from_collection/"+cname+"/"+name;}
+                            }
+            </script>
+
+        <br><br><br>
+        <p><a class="btn btn-default" href="/collections"
+            role="button" style="background-color: #9acfea;">< Back to Collections</a></p>
+      </form>
+
+   </div>
+
+{% endblock %}
