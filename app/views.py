@@ -228,6 +228,24 @@ def add_doc(name, objectid, attr, value, option):
     return redirect(url_for('route_doc_page', name=name, var='True', objectid=objectid))
 
 
+@app.route('/collections/add_attr_to_collection/<name>/<attr_name>')
+def add_attr_to_collection(name, attr_name):
+    db_select = db
+    my_collection = getattr(db_select, name)
+    content = my_collection.update({}, {"$set": {attr_name: ""}}, upsert=False, multi=True)
+
+    return redirect(url_for('show_collection', name=name))
+
+
+@app.route('/collections/delete_attr_from_collection/<name>/<attr_name>')
+def delete_attr_from_collection(name, attr_name):
+    db_select = db
+    my_collection = getattr(db_select, name)
+    content = my_collection.update({}, {"$unset": {attr_name: ""}}, upsert=False, multi=True)
+
+    return redirect(url_for('show_collection', name=name))
+
+
 @app.route('/sql_to_mongodb')
 def sql_to_mongodb():
     return render_template('sql_to_mongodb_conversion.html')
