@@ -51,6 +51,32 @@
         <b>{</b> ..
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.. <b>}</b>
 
+        <br><br>
+        MongoDB does not provide support for JOINS. If you need to join two collections,
+        you would retrieve these collections and perform operations on them in your application.
+        <br>MongoDB supports nested document structure. You can have a document within a document.
+        <br>Example:
+        <br><br>
+        <b>{</b><br>
+        &nbsp;&nbsp;<b>_id: "joe",</b><br>
+        &nbsp;&nbsp;<b>name: "Joe Bookreader",</b><br>
+        &nbsp;&nbsp;<b>addresses: [</b><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>{</b><br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>street: "123 Fake Street",</b><br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>city: "Faketon",</b><br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>state: "MA",</b><br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>zip: "12345"</b><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>},</b><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>{</b><br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>street: "1 Some Other Street",</b><br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>city: "Boston",</b><br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>state: "MA",</b><br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>zip: "12345"</b><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>}</b><br>
+              &nbsp;&nbsp;&nbsp;&nbsp;<b>]</b><br>
+        <b>}</b>
+
+
         <br><br><br>
         <b><u>Using Mongo shell for operating the database :</u></b>
         <br><br>
