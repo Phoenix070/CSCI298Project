@@ -82,13 +82,11 @@ def show_collection(name):
     my_collection = getattr(db_select, name)
     content = my_collection.find()
 
-    key_list = []
+    key_list = Set()
 
     for i in content:
         for key, value in i.iteritems():
-            key_list.append(key)
-
-    key_list.sort()
+            key_list.add(key)
 
     content = my_collection.find()
 
@@ -117,23 +115,23 @@ def show_collection(name):
         orig_content += "\n}"
 
         list1 = ""
-        for key in Set(key_list):
-            if key in each_row.keys():
-                value = each_row.get(key)
-                if type(value) == type(list()):
-                    for i in value:
-                        list1 += str(i) + ","
-                    list1 = list1.rstrip(",")
-                    value_obj = list1
-                else:
-                    value_obj = value
-                content_dict[key] = value_obj
+        for key in key_list:
+            value = each_row.get(key)
+            if type(value) == type(list()):
+                for i in value:
+                    list1 += str(i) + ","
+                list1 = list1.rstrip(",")
+                value_obj = list1
             else:
+                value_obj = value
+            if value_obj is None:
                 content_dict[key] = ""
+            else:
+                content_dict[key] = value_obj
 
         content_dict_list.append([content_dict, orig_content])
 
-    return render_template('collection_content.html', name=name, keys=Set(key_list),
+    return render_template('collection_content.html', name=name, keys=key_list,
                            list_new=content_dict_list)
 
 
