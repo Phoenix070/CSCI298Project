@@ -141,7 +141,6 @@ def add_collection(name):
     db_select = db
     my_collection = getattr(db_select, name)
     content = my_collection.insert({})
-    content = my_collection.remove({})
 
     return redirect(url_for('display_collections'))
 
